@@ -1,10 +1,11 @@
 <!doctype html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="color-scheme" content="dark">
-		<meta name="theme-color" content="#141518">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="color-scheme" content="dark" />
+		<meta name="theme-color" content="#141518" />
+
 		<title>liner - MP3 tag editor</title>
 	</head>
 	<body>
@@ -54,6 +55,7 @@
 
 							<h2>Drop an MP3 here</h2>
 							<p>Or choose a file to edit its tags and artwork.</p>
+
 							<button id="choose-button" class="button button-primary" type="button">
 								Choose a file <span aria-hidden="true">↗</span>
 							</button>
@@ -67,10 +69,12 @@
 						<section id="workspace" hidden>
 							<div class="file-strip">
 								<div class="file-symbol" aria-hidden="true">♫</div>
+
 								<div class="file-information">
 									<h2 id="file-name"></h2>
 									<p id="file-details"></p>
 								</div>
+
 								<span id="edit-state" class="badge">Original</span>
 							</div>
 
@@ -105,7 +109,9 @@
 
 									<div class="add-tag-row">
 										<label class="sr-only" for="tag-picker">Tag to add</label>
+
 										<select id="tag-picker"></select>
+
 										<button id="add-tag-button" class="button button-secondary" type="button">
 											<span aria-hidden="true">＋</span> Add tag
 										</button>
@@ -116,10 +122,11 @@
 											<span>Other frames</span>
 											<span id="advanced-count" class="badge"></span>
 										</summary>
+
 										<p class="panel-note">
-											These frames are kept byte-for-byte. Their encoded payloads
-											can be downloaded, replaced or removed.
+											These frames are kept byte-for-byte. Their encoded payloads can be downloaded, replaced or removed.
 										</p>
+
 										<div id="raw-fields"></div>
 									</details>
 								</section>
@@ -130,6 +137,7 @@
 									<span id="field-count" class="footer-count"></span>
 									<p>The audio stays exactly as it is.</p>
 								</div>
+
 								<button id="export-button" class="button button-primary" type="submit">
 									Export MP3 <span aria-hidden="true">↓</span>
 								</button>
@@ -139,8 +147,9 @@
 				</form>
 
 				<p id="status" class="status" role="status" aria-live="polite">
-					Loading editor…
+					Loading editor...
 				</p>
+
 				<noscript>This editor needs JavaScript enabled.</noscript>
 			</main>
 
