@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="color-scheme" content="dark">
+		<meta name="theme-color" content="#141518">
+		<title>liner - MP3 tag editor</title>
+	</head>
+	<body>
+		<div class="app">
+			<header class="masthead">
+				<a class="brand" href="./" aria-label="liner home">
+					<span class="brand-mark" aria-hidden="true">
+						<i></i><i></i><i></i>
+					</span>
+					liner<span class="brand-period">.</span>
+				</a>
+				<span class="masthead-note">a small editor for your music</span>
+			</header>
+
+			<main>
+				<form id="editor-form" novalidate>
+					<fieldset id="controls" disabled>
+						<legend class="sr-only">MP3 tag editor</legend>
+
+						<div class="toolbar">
+							<div class="toolbar-title">
+								<span class="eyebrow">MP3 / METADATA</span>
+								<h1 id="page-title">The details matter.</h1>
+							</div>
+
+							<div class="toolbar-actions">
+								<button id="reset-button" class="button button-quiet" type="button" hidden>
+									Reset
+								</button>
+								<button id="open-button" class="button button-secondary" type="button">
+									<span aria-hidden="true">↗</span> Open MP3
+								</button>
+							</div>
+						</div>
+
+						<input id="mp3-input" type="file" accept=".mp3,audio/mpeg" hidden>
+						<input id="art-input" type="file" accept="image/jpeg,image/png,image/webp,image/gif" hidden>
+
+						<section id="empty-state" class="empty-state" aria-label="Open an MP3">
+							<div class="empty-art" aria-hidden="true">
+								<div class="sleeve sleeve-back"></div>
+								<div class="sleeve sleeve-front">
+									<span></span><span></span><span></span>
+									<div class="sleeve-label">SIDE A<br>33⅓</div>
+								</div>
+							</div>
+
+							<h2>Drop an MP3 here</h2>
+							<p>Or choose a file to edit its tags and artwork.</p>
+							<button id="choose-button" class="button button-primary" type="button">
+								Choose a file <span aria-hidden="true">↗</span>
+							</button>
+
+							<div class="empty-notes">
+								<span><i class="dot dot-mint"></i> Local files only</span>
+								<span><i class="dot dot-lilac"></i> No audio re-encoding</span>
+							</div>
+						</section>
+
+						<section id="workspace" hidden>
+							<div class="file-strip">
+								<div class="file-symbol" aria-hidden="true">♫</div>
+								<div class="file-information">
+									<h2 id="file-name"></h2>
+									<p id="file-details"></p>
+								</div>
+								<span id="edit-state" class="badge">Original</span>
+							</div>
+
+							<div class="workspace-grid">
+								<aside id="art-zone" class="art-panel" aria-labelledby="art-heading">
+									<div class="section-heading">
+										<h2 id="art-heading">Artwork</h2>
+										<span class="section-number">01</span>
+									</div>
+
+									<div id="covers" class="covers"></div>
+
+									<button id="add-art-button" class="art-drop" type="button">
+										<span class="art-drop-symbol" aria-hidden="true">＋</span>
+										<strong>Add cover art</strong>
+										<span>Drop an image or browse</span>
+									</button>
+
+									<p class="panel-note">
+										JPG, PNG, WebP or GIF · up to 12 MB.<br>
+										New artwork is stored as JPEG.
+									</p>
+								</aside>
+
+								<section class="metadata-panel" aria-labelledby="tags-heading">
+									<div class="section-heading">
+										<h2 id="tags-heading">Tags</h2>
+										<span class="section-number">02</span>
+									</div>
+
+									<div id="tag-fields" class="tag-fields"></div>
+
+									<div class="add-tag-row">
+										<label class="sr-only" for="tag-picker">Tag to add</label>
+										<select id="tag-picker"></select>
+										<button id="add-tag-button" class="button button-secondary" type="button">
+											<span aria-hidden="true">＋</span> Add tag
+										</button>
+									</div>
+
+									<details id="advanced" class="advanced" hidden>
+										<summary>
+											<span>Other frames</span>
+											<span id="advanced-count" class="badge"></span>
+										</summary>
+										<p class="panel-note">
+											These frames are kept byte-for-byte. Their encoded payloads
+											can be downloaded, replaced or removed.
+										</p>
+										<div id="raw-fields"></div>
+									</details>
+								</section>
+							</div>
+
+							<footer class="editor-footer">
+								<div>
+									<span id="field-count" class="footer-count"></span>
+									<p>The audio stays exactly as it is.</p>
+								</div>
+								<button id="export-button" class="button button-primary" type="submit">
+									Export MP3 <span aria-hidden="true">↓</span>
+								</button>
+							</footer>
+						</section>
+					</fieldset>
+				</form>
+
+				<p id="status" class="status" role="status" aria-live="polite">
+					Loading editor…
+				</p>
+				<noscript>This editor needs JavaScript enabled.</noscript>
+			</main>
+
+			<footer class="site-footer">
+				<span>liner / tag editor</span>
+				<span>Your files never leave this browser.</span>
+			</footer>
+		</div>
+	</body>
+</html>
