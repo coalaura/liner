@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="240" viewBox="0 0 960 240" role="img" aria-labelledby="title description">
+  <title id="title">liner</title>
+  <desc id="description">MP3 tag editor. A transparent banner with a pastel three-bar logo and a record sleeve.</desc>
+
+  <g transform="translate(56 65)">
+    <path fill="#b5dac5" d="M0 24h10v34H0z"/>
+    <path fill="#c3b9e4" d="M18 8h10v50H18z"/>
+    <path fill="#e4b89e" d="M36 16h10v42H36z"/>
+    <text x="68" y="58" fill="#edede8" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="72" font-weight="600" letter-spacing="-4">liner<tspan fill="#b5dac5">.</tspan></text>
+  </g>
+
+  <text x="58" y="170" fill="#a0a2ac" font-family="Consolas, Liberation Mono, monospace" font-size="18" letter-spacing="2">MP3 TAG EDITOR</text>
+
+  <g transform="translate(718 40)">
+    <circle cx="112" cy="80" r="76" fill="#1b1d21" stroke="#303239"/>
+    <g fill="none" stroke="#303239">
+      <circle cx="112" cy="80" r="62"/>
+      <circle cx="112" cy="80" r="51"/>
+      <circle cx="112" cy="80" r="40"/>
+    </g>
+    <circle cx="112" cy="80" r="23" fill="#c3b9e4"/>
+    <circle cx="112" cy="80" r="4" fill="#141518"/>
+    <rect width="116" height="160" rx="2" fill="#212328" stroke="#53565f"/>
+    <path d="M20 28h76" stroke="#edede8" stroke-width="2"/>
+    <path d="M20 36h44" stroke="#777b87" stroke-width="2"/>
+    <path d="M20 94h14v42H20z" fill="#b5dac5"/>
+    <path d="M42 74h14v62H42z" fill="#c3b9e4"/>
+    <path d="M64 84h14v52H64z" fill="#e4b89e"/>
+  </g>
+</svg>
