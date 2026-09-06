@@ -1,4 +1,8 @@
-![liner - MP3 tag editor](.github/banner.svg)
+<picture>
+	<source media="(prefers-color-scheme: dark)" srcset=".github/banner.svg">
+	<source media="(prefers-color-scheme: light)" srcset=".github/banner-light.svg">
+	<img alt="liner - MP3 tag editor" src=".github/banner-light.svg">
+</picture>
 
 A browser-based editor for MP3 metadata and cover artwork. Files are processed locally and the audio stream is copied without re-encoding.
 
