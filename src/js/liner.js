@@ -17,6 +17,8 @@ const ui = {
 	fields: $("tag-fields"),
 	picker: $("tag-picker"),
 	addTag: $("add-tag-button"),
+	addMainTags: $("add-main-tags-button"),
+	clearTags: $("clear-tags-button"),
 	covers: $("covers"),
 	artZone: $("art-zone"),
 	advanced: $("advanced"),
@@ -71,6 +73,11 @@ const GENRE_CHOICES = [...new Set([
 	"IDM", "Indie Pop", "Indie Rock", "K-Pop", "Neo-Soul", "Podcast",
 	"Post-Punk", "Post-Rock", "Shoegaze", "Synthwave", "World",
 ])].sort((a, b) => a.localeCompare(b));
+
+const MAIN_TAG_IDS = {
+	3: ["TIT2", "TPE1", "TALB", "TYER", "TCON"],
+	4: ["TIT2", "TPE1", "TALB", "TDRC", "TCON"],
+};
 
 const PICTURE_TYPES = [
 	"Other", "File icon (32 × 32 PNG)", "Other file icon",
@@ -1661,6 +1668,8 @@ function refreshPicker() {
 
 	ui.addTag.disabled = available.length === 0;
 	ui.picker.disabled = available.length === 0;
+	ui.addMainTags.disabled = MAIN_TAG_IDS[state.version].every((id) => state.entries.has(id));
+	ui.clearTags.disabled = ![...state.entries.keys()].some((id) => id !== "APIC");
 
 	refreshSummary();
 }
@@ -1787,7 +1796,7 @@ async function openFile(file, askToDiscard = true) {
 		}
 
 		if (entries.size === 0) {
-			for (const id of ["TIT2", "TPE1", "TALB", source.version === 4 ? "TDRC" : "TYER", "TCON"]) {
+			for (const id of MAIN_TAG_IDS[source.version]) {
 				addTag(id, false);
 			}
 
@@ -1882,9 +1891,13 @@ async function exportMP3() {
 			state.file.slice(state.start, state.end),
 		], { type: "audio/mpeg" });
 
-		const base = state.file.name.replace(/\.mp3$/i, "");
+		const title = state.entries.get("TIT2")?.read().trim() ?? "",
+			artist = state.entries.get("TPE1")?.read().trim() ?? "",
+			filename = title
+				? `${artist ? `${artist} - ` : ""}${title}.mp3`
+				: state.file.name;
 
-		download(blob, `${base}.liner.mp3`);
+		download(blob, filename);
 
 		state.changed = false;
 
@@ -1998,6 +2011,31 @@ ui.addTag.addEventListener("click", () => {
 	} else {
 		ui.picker.focus();
 	}
+});
+
+ui.addMainTags.addEventListener("click", () => {
+	for (const id of MAIN_TAG_IDS[state.version]) {
+		addTag(id, false);
+	}
+});
+
+ui.clearTags.addEventListener("click", () => {
+	if (!window.confirm("Clear all tag fields? Artwork will be kept.")) {
+		return;
+	}
+
+	for (const [id, entry] of state.entries) {
+		if (id === "APIC") {
+			continue;
+		}
+
+		entry.element.remove();
+
+		state.entries.delete(id);
+	}
+
+	markChanged();
+	refreshPicker();
 });
 
 ui.reset.addEventListener("click", () => {
